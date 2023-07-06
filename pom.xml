@@ -50,7 +50,10 @@
 
 	<modules>
 		<module>introduccion.project.reactor</module>
+		<module>Step-verifier</module>
+		<module>servicioSencillo</module>
 	</modules>
+
 
 	<build>
 		<plugins>
