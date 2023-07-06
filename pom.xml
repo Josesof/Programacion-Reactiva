@@ -53,6 +53,7 @@
 		<module>Step-verifier</module>
 		<module>servicioSencillo</module>
 		<module>contrapresion-ejemplos</module>
+		<module>transformacion-combinacion-flujos</module>
 	</modules>
 
 
