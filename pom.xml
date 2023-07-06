@@ -52,6 +52,7 @@
 		<module>introduccion.project.reactor</module>
 		<module>Step-verifier</module>
 		<module>servicioSencillo</module>
+		<module>contrapresion-ejemplos</module>
 	</modules>
 
 
