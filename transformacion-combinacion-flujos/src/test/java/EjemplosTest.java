@@ -87,4 +87,22 @@ public class EjemplosTest {
 
   }
 
+  @Test
+  public void testCombinarFlujosUsandoConDemoraConFip(){
+    Flux<String> flux1 = Flux.just("leon", "luis", "luna")
+      .delayElements(Duration.ofSeconds(1));
+    Flux<String> flux2 = Flux.just("clave1", "clave2", "clave3")
+      .delayElements(Duration.ofSeconds(1));
+
+    Flux<String> fluxZip = Flux.zip(flux1, flux2, (f1,f2) -> {
+      return f1.concat(" ").concat(f2);
+    }).log();
+
+    StepVerifier.create(fluxZip)
+      .expectSubscription()
+      .expectNext("leon clave1", "luis clave2", "luna clave3")
+      .verifyComplete();
+
+  }
+
 }

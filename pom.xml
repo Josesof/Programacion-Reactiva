@@ -54,6 +54,10 @@
 		<module>servicioSencillo</module>
 		<module>contrapresion-ejemplos</module>
 		<module>transformacion-combinacion-flujos</module>
+		<module>manejo-excepciones</module>
+		<module>hot-cold-publishers</module>
+		<module>anotaciones</module>
+		<module>api.rest.reactiva.mongodb</module>
 	</modules>
 
 
