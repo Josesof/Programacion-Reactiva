@@ -3,6 +3,7 @@ package com.api.rest.reactiva.controller;
 import com.api.rest.reactiva.document.Contacto;
 import com.api.rest.reactiva.repository.ContactoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,15 +12,23 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api")
 public class ContactoController {
 
   @Autowired
   private ContactoRepository contactoRepository;
 
-  @GetMapping(value ="all", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Flux<Contacto> lsitarContactos(){
+
+  @GetMapping(value ="/listar", produces = MediaType.APPLICATION_JSON_VALUE)
+  public Flux<Contacto> listarContactos(){
     return contactoRepository.findAll();
+  }
+
+
+  @GetMapping(value ="/mono", produces = MediaType.APPLICATION_JSON_VALUE)
+  public Flux<String> PruebaMono(){
+    Flux<String> flusx = Flux.just("Consumiendo el servicio");
+    return flusx;
   }
 
   @GetMapping(value ="/contactos/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -43,7 +52,7 @@ public class ContactoController {
       .defaultIfEmpty(new ResponseEntity<>(contacto, HttpStatus.NOT_ACCEPTABLE));
   }
 
-  @PutMapping("/contactos")
+  @PutMapping("/change/{id}")
   public Mono<ResponseEntity<Contacto>> actualizarContacto(@RequestBody Contacto contacto, @PathVariable String id){
     return contactoRepository.findById(id)
       .flatMap(contactoActualizado -> {
